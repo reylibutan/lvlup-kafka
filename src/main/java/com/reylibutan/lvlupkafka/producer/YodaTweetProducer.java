@@ -18,17 +18,15 @@ import java.util.concurrent.TimeUnit;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class
-YodaTweetProducer {
-
-  @Value("${lvlupkafka.topics.core.yodatweets}")
-  private String TOPIC_YODA_TWEETS;
+public class YodaTweetProducer {
 
   private final TweetGenerator tweetGenerator;
   private final KafkaTemplate<String, Tweet> kTemplate;
+  @Value("${lvlupkafka.topics.core.yodatweets}")
+  private String TOPIC_YODA_TWEETS;
 
   @EventListener(ApplicationStartedEvent.class)
-  public void generateFakeYodaQuote() {
+  public void generateFakeYodaQuotes() {
     ScheduledExecutorService scheduledJob = Executors.newSingleThreadScheduledExecutor();
     scheduledJob.scheduleAtFixedRate(this::generateYodaTweet, 1, 3_000, TimeUnit.MILLISECONDS);
   }
