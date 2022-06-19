@@ -10,13 +10,7 @@ import java.time.LocalDateTime;
 @Component
 public class TweetGenerator {
 
-  private final Faker faker;
-
-  @Lazy
-  @Autowired
-  public TweetGenerator(Faker faker) {
-    this.faker = faker;
-  }
+  private final Faker faker = new Faker();
 
   public Tweet generateYodaTweet() {
     Long yodaId = 1029384756L;

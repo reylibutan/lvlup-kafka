@@ -11,9 +11,4 @@ public class LvlupKafkaApplication {
   public static void main(String[] args) {
     SpringApplication.run(LvlupKafkaApplication.class, args);
   }
-
-  @Bean
-  public Faker faker() {
-    return new Faker();
-  }
 }

@@ -32,14 +32,14 @@ public class YodaTweetProducer {
   }
 
   public void generateYodaTweet() {
-    try {
-      String key = UUID.randomUUID().toString();
-      Tweet tweet = tweetGenerator.generateYodaTweet();
+    String key = UUID.randomUUID().toString();
 
+    try {
+      Tweet tweet = tweetGenerator.generateYodaTweet();
       log.info(">>> Sending Yoda Tweet. (key={}, tweet={})", key, tweet);
       kTemplate.send(TOPIC_YODA_TWEETS, key, tweet);
     } catch (Exception e) {
-      e.printStackTrace();
+      log.error("Unable to generate a cool Yoda tweet -_-. {key: {}}", key, e);
     }
   }
 }
