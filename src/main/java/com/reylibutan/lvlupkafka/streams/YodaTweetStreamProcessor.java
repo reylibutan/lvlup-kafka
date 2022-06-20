@@ -6,6 +6,7 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.support.serializer.JsonSerde;
@@ -24,13 +25,20 @@ public class YodaTweetStreamProcessor {
         builder.stream(
             TOPIC_YODA_TWEETS, Consumed.with(Serdes.String(), new JsonSerde<>(Tweet.class)));
 
-    yodaTweetStream.peek(
-        (key, tweet) -> {
-          try {
-            log.info("[KS] <<< K={}, V={}", key, tweet);
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
-        });
+    KStream<String, String> yodaQuestionTweetStream =
+        yodaTweetStream
+            .filter((key, tweet) -> tweet.getText().contains("?"))
+            .peek(
+                (key, tweet) -> {
+                  try {
+                    log.info("[KS] <<< K={}, V={}", key, tweet);
+                  } catch (Exception e) {
+                    e.printStackTrace();
+                  }
+                })
+            .mapValues(tweet -> tweet.getText().toUpperCase());
+
+    yodaQuestionTweetStream.to(
+        "lvlupkafka.core.yodatweets.questions", Produced.with(Serdes.String(), Serdes.String()));
   }
 }
