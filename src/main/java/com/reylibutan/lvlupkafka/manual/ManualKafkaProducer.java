@@ -27,7 +27,7 @@ public class ManualKafkaProducer {
       // even though these messages don't have a key, they will be sent to the same partition because of Sticky Partitioning
       // contrary to what we expect which is round-robin
       for (int i = 0; i < 10; i++) {
-        ProducerRecord<String, String> sampleRecord = new ProducerRecord<>("demo_java", "this is a sample message " + i);
+        ProducerRecord<String, String> sampleRecord = new ProducerRecord<>("demo_java", "key_" + i, "this is a sample message " + i);
         localKafkaProducer.send(sampleRecord, (metadata, exception) -> {
           if (exception == null) {
             log.info("Successfully sent a message. \n{ topic: {}, partition: {}, offset: {}, timestamp: {} }", metadata.topic(), metadata.partition(), metadata.offset(),

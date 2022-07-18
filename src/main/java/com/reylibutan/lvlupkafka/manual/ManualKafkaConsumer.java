@@ -3,6 +3,7 @@ package com.reylibutan.lvlupkafka.manual;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.errors.WakeupException;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -26,7 +27,12 @@ public class ManualKafkaConsumer {
     props.setProperty(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     props.setProperty(VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     props.setProperty(GROUP_ID_CONFIG, consumerGroupId);
+    // what to do when there is no initial offset
     props.setProperty(AUTO_OFFSET_RESET_CONFIG, "earliest");
+    // to achieve cooperative re-balancing (instead of eager re-balancing)
+    props.setProperty(PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName());
+    // static group membership - remember to add a different ID for each Consumer
+    // props.setProperty(GROUP_INSTANCE_ID_CONFIG, "some-consumer-ID");
 
     try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
       consumer.subscribe(List.of(topic));
@@ -44,8 +50,6 @@ public class ManualKafkaConsumer {
       }));
 
       while (true) {
-        log.info("<<< Polling....");
-
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
         for (ConsumerRecord<String, String> record : records) {
           log.info("key: {}, value: {}", record.key(), record.value());
