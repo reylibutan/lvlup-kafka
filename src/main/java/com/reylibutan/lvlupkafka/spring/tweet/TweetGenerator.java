@@ -1,8 +1,6 @@
-package com.reylibutan.lvlupkafka.tweet;
+package com.reylibutan.lvlupkafka.spring.tweet;
 
 import net.datafaker.Faker;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

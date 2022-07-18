@@ -1,6 +1,6 @@
-package com.reylibutan.lvlupkafka.streams;
+package com.reylibutan.lvlupkafka.spring.streams;
 
-import com.reylibutan.lvlupkafka.tweet.Tweet;
+import com.reylibutan.lvlupkafka.spring.tweet.Tweet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;

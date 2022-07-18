@@ -1,14 +1,13 @@
-package com.reylibutan.lvlupkafka.producer;
+package com.reylibutan.lvlupkafka.spring.producer;
 
-import com.reylibutan.lvlupkafka.tweet.Tweet;
-import com.reylibutan.lvlupkafka.tweet.TweetGenerator;
+import com.reylibutan.lvlupkafka.spring.tweet.Tweet;
+import com.reylibutan.lvlupkafka.spring.tweet.TweetGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 import java.util.concurrent.Executors;

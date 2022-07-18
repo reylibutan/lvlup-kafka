@@ -1,4 +1,4 @@
-package com.reylibutan.lvlupkafka.producer;
+package com.reylibutan.lvlupkafka.manual;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -14,7 +14,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
  * No usage of any Spring-related stuff.
  */
 @Slf4j
-public class LowLevelProducer {
+public class ManualKafkaProducer {
 
   public static void main(String[] args) {
     // initialize the props, similar to how you would be calling kafka-console-producer.bat in CLI

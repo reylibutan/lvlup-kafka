@@ -1,6 +1,6 @@
-package com.reylibutan.lvlupkafka.consumer;
+package com.reylibutan.lvlupkafka.spring.consumer;
 
-import com.reylibutan.lvlupkafka.tweet.Tweet;
+import com.reylibutan.lvlupkafka.spring.tweet.Tweet;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

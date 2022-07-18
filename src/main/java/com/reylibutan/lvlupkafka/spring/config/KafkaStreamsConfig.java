@@ -1,4 +1,4 @@
-package com.reylibutan.lvlupkafka.config;
+package com.reylibutan.lvlupkafka.spring.config;
 
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.processor.WallclockTimestampExtractor;

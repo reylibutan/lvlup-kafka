@@ -1,4 +1,4 @@
-package com.reylibutan.lvlupkafka.tweet;
+package com.reylibutan.lvlupkafka.spring.tweet;
 
 import lombok.Data;
 
