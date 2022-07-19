@@ -1,4 +1,4 @@
-package com.reylibutan.lvlupkafka;
+package com.reylibutan.lvlupkafka.spring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,5 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class LvlupKafkaApplicationTests {
 
   @Test
-  void contextLoads() {}
+  void contextLoads() {
+  }
 }

@@ -1,4 +1,4 @@
-package com.reylibutan.lvlupkafka.manual;
+package com.reylibutan.lvlupkafka.basics;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
